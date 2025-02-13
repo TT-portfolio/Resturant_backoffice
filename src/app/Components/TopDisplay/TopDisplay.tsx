@@ -1,10 +1,13 @@
 import React from 'react'
+import { useUIState } from '@/context/UiStateProvider'
 
-export default function TopDisplay() {
+  const TopDisplay = () => {
+    const { selectedFilter} = useUIState();
   return (
     <div className='bg-slate-500 p-4 text-white font-semibold flex justify-between'>
-    <div >Dashboard</div>
+    <div >{selectedFilter}</div>
     <h1>PizzaLover</h1>
     </div>
   )
 }
+export default TopDisplay
