@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { UIStateProvider } from "@/context/UiStateProvider";
+import { UIStateProvider } from "@/context/UIStateProvider";
 import DashboardLayout from "./Components/DashboardLayout";
 
 const geistSans = Geist({

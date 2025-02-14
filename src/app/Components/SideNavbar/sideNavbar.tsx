@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useUIState } from "@/context/UiStateProvider";
+import { useUIState } from "@/context/UIStateProvider";
 
 
 const SideNavbar = () => {
@@ -11,11 +11,15 @@ const SideNavbar = () => {
 
     const toggleMenu = (menu: string) => {
         setOpenMenu(openMenu === menu ? null : menu)
+        setSelectedFilter("Dashboard")
+    }
+
+    const handleFilterChange = (category: string, filter: string) => {
+        setSelectedFilter(`${category} > ${filter}`)
     }
 
     return (
         <div className="bg-slate-400 flex flex-col h-screen text-white font-semibold text-xl">
-            <h2>Navigation</h2>
             {/* Dashboard */}
             <div>
                 <button
@@ -24,27 +28,32 @@ const SideNavbar = () => {
                     Dashboard
                 </button>
                 {openMenu === "dashboard" && (
-                    <ul className="ml-4 ">
+                    <ul className="ml-4 mr-4">
                         <li
-                            className="p-2 cursor-pointer rounded-md hover:bg-gray-600"
-                            onClick={() => setSelectedFilter("All Orders")}>
-                            All Orders
+                            className="p-2 cursor-pointer rounded-md hover:bg-Order-red hover:text-black"
+                            onClick={() => handleFilterChange("Dashboard", "Emottagen")}>
+                            Emottagen
                         </li>
                         <li
-                            className="p-2 cursor-pointer rounded-md hover:bg-gray-600"
-                            onClick={() => setSelectedFilter("Pending Orders")}>
-                            Pending Orders
+                            className="p-2 cursor-pointer rounded-md hover:bg-Order-green hover:text-black"
+                            onClick={() => handleFilterChange("Dashboard", "Tillagning")}>
+                            Tillagning
+                        </li>
+                        <li
+                            className="p-2 cursor-pointer rounded-md hover:bg-Order-blue hover:text-black whitespace-nowrap"
+                            onClick={() => handleFilterChange("Dashboard", "Leverans")}>
+                            Leverans
                         </li>
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-gray-600 whitespace-nowrap"
-                            onClick={() => setSelectedFilter("Completed Orders")}>
-                            Completed Orders
+                            onClick={() => handleFilterChange("Dashboard", "Avslutad")}>
+                            Avslutad
                         </li>
                     </ul>
                 )}
             </div>
             {/* Statistic */}
-            <div>
+            {/* <div>
                 <button
                     className="w-full text-left p-2 font-semibold hover:bg-gray-600"
                     onClick={() => toggleMenu("statistic")}>
@@ -54,19 +63,19 @@ const SideNavbar = () => {
                     <ul className="ml-4">
                         <li
                             className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => setSelectedFilter("Sales Report")}>
+                            onClick={() => handleFilterChange("Statestic","Sales Report")}>
                             Sales Report
                         </li>
                         <li
                             className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => setSelectedFilter("Customer Insights")}>
+                            onClick={() => handleFilterChange("Statestic","Customer Insights")}>
                             Customer Insights
                         </li>
                     </ul>
                 )}
-            </div>
+            </div> */}
             {/* Orders */}
-            <div>
+            {/* <div>
                 <button
                     className="w-full text-left p-2 font-semibold hover:bg-gray-600"
                     onClick={() => toggleMenu("orders")}>
@@ -76,17 +85,17 @@ const SideNavbar = () => {
                     <ul className="ml-4">
                         <li
                             className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => setSelectedFilter("New Orders")}>
+                            onClick={() => handleFilterChange("Orders","New Orders")}>
                             New Orders
                         </li>
                         <li
                             className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => setSelectedFilter("Delivered Orders")}>
+                            onClick={() => handleFilterChange("Orders","Delivered Orders")}>
                             Delivered Orders
                         </li>
                     </ul>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 };

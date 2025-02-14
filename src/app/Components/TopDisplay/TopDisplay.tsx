@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUIState } from '@/context/UiStateProvider'
+import { useUIState } from '@/context/UIStateProvider'
 
   const TopDisplay = () => {
     const { selectedFilter} = useUIState();
