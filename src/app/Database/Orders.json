@@ -1,7 +1,48 @@
 [
     {
-        "OrderStatus": "Recived",
-        "Name": "Thomas Hallström",
-        "OrderNo": "4"
+        "OrderNo": "4",
+        "OrderStatus": "Emottagen",
+        "CustomerName": "Thomas Hallström",
+        "OrderTime": "18:30",
+        "Pizzas": [
+            {
+                "PizzaName": "Margherita",
+                "Quantity": 2,
+                "Price": 120
+            },
+            {
+                "PizzaName": "Vesuvio",
+                "Quantity": 1,
+                "Price": 130
+            },
+            {
+                "PizzaName": "Caprisiosa",
+                "Quantity": 2,
+                "Price": 115
+            }
+        ]
+    },
+    {
+        "OrderNo": "5",
+        "OrderStatus": "Tillagning",
+        "CustomerName": "Claes Hallström",
+        "OrderTime": "18:40",
+        "Pizzas": [
+            {
+                "PizzaName": "Margherita",
+                "Quantity": 2,
+                "Price": 120
+            },
+            {
+                "PizzaName": "Vesuvio",
+                "Quantity": 1,
+                "Price": 130
+            },
+            {
+                "PizzaName": "Caprisiosa",
+                "Quantity": 2,
+                "Price": 115
+            }
+        ]
     }
 ]
