@@ -23,7 +23,7 @@ const SideNavbar = () => {
             {/* Dashboard */}
             <div>
                 <button
-                    className="w-full text-left p-2 font-semibold hover:bg-gray-600"
+                    className="w-full text-left font-semibold hover:bg-gray-600"
                     onClick={() => toggleMenu("dashboard")}>
                     Dashboard
                 </button>
