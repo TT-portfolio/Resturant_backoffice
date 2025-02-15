@@ -19,18 +19,18 @@ const SideNavbar = () => {
     }
 
     return (
-        <div className="bg-slate-400 flex flex-col h-screen text-white font-semibold text-xl">
+        <div className="bg-slate-400 p-4 flex flex-col h-screen text-white font-semibold text-xl">
             {/* Dashboard */}
             <div>
                 <button
-                    className="w-full text-left p-2 font-semibold hover:bg-gray-600"
+                    className="text-left font-semibold hover:bg-gray-600"
                     onClick={() => toggleMenu("dashboard")}>
                     Dashboard
                 </button>
                 {openMenu === "dashboard" && (
                     <ul className="ml-4 mr-4">
                         <li
-                            className="p-2 cursor-pointer rounded-md hover:bg-Order-red hover:text-black"
+                            className="p-2 cursor-pointer rounded-md hover:bg-yellow-500 hover:text-black"
                             onClick={() => handleFilterChange("Dashboard", "Emottagen")}>
                             Emottagen
                         </li>
