@@ -1,5 +1,5 @@
 export interface Order {
-    OrderStatus: "Emottagen" | "Tillagning" | "Leverans" | "Avslutad";
+    OrderStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad";
     CustomerName: string;
     OrderNo: string;
     OrderTime: string

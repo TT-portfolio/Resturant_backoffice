@@ -31,8 +31,8 @@ const SideNavbar = () => {
                     <ul className="ml-4 mr-4">
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-yellow-500 hover:text-black"
-                            onClick={() => handleFilterChange("Dashboard", "Emottagen")}>
-                            Emottagen
+                            onClick={() => handleFilterChange("Dashboard", "Mottagen")}>
+                            Mottagen
                         </li>
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-Order-green hover:text-black"

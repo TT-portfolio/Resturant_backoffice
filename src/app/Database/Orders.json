@@ -1,7 +1,7 @@
 [
     {
         "OrderNo": "4",
-        "OrderStatus": "Emottagen",
+        "OrderStatus": "Mottagen",
         "CustomerName": "Thomas Hallström",
         "OrderTime": "18:30",
         "Pizzas": [

@@ -11,7 +11,7 @@ export default function OrderCard({ order }: { order: Order }) {
 
     const getStatusColor = (status: string) => {
         switch (status) {
-            case "Emottagen":
+            case "Mottagen":
                 return "bg-yellow-500";
             case "Tillagning":
                 return "bg-green-500";
@@ -91,9 +91,9 @@ export default function OrderCard({ order }: { order: Order }) {
                     {/* Knappar för att simulera statusändring */}
                     <div className="mt-2 space-x-2">
                         <button
-                            onClick={() => setStatus("Emottagen")}
+                            onClick={() => setStatus("Mottagen")}
                             className="px-2 py-1 bg-yellow-500 text-white rounded">
-                            Emottagen
+                            Mottagen
                         </button>
                         <button
                             onClick={() => setStatus("Tillagning")}
