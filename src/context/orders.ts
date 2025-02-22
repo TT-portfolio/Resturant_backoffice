@@ -1,9 +1,15 @@
-import fs from "fs";
-import path from "path";
-
 export async function getOrders() {
-    const filePath = path.join(process.cwd(), "src/app/Database/Orders.json");
-    const data = fs.readFileSync(filePath, "utf-8");
-    return JSON.parse(data);
-}
+    try {
+        const response = await fetch("https://pizzaloverfunctions.azurewebsites.net/api/GetOrders");
+        
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status} ${response.statusText}`);
+        }
 
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        return []; // Returnerar en tom array om det blir ett fel
+    }
+}
