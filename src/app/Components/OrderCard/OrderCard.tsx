@@ -35,13 +35,13 @@ export default function OrderCard({ order }: { order: Order }) {
 
     return (
         <div className="border p-4 rounded-md bg-white shadow-md">
-            <div className="flex justify-between items-center">
+            <div className="grid grid-cols-4">
                 <h3 className="text-lg font-bold">
                     Order number # {order.OrderNo}
                 </h3>
                 <h4 className="text-lg font-bold">{order.CustomerName}</h4>
                 <p
-                    className={`px-2 py-1 text-white rounded ${getStatusColor(
+                    className={`px-2 py-1 max-w-24 text-center text-white rounded ${getStatusColor(
                         status
                     )}`}>
                     {status}
