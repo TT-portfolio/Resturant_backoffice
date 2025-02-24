@@ -7,6 +7,7 @@ export async function getOrders() {
         }
 
         const data = await response.json();
+        console.log(`här kommer det från order`, data)
         return data;
     } catch (error) {
         console.error("Error fetching orders:", error);

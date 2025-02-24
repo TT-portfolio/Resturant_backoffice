@@ -1,7 +1,59 @@
 [
     {
-        "OrderNo": "4",
+        "id": "1001",
+        "OrderNo": "1",
+        "OrderId": "1001",
+        "OrderStatus": "Leverand",
+        "CustomerName": "Tina Lutti",
+        "OrderTime": "18:30",
+        "Pizzas": [
+            {
+                "PizzaName": "Margherita",
+                "Quantity": 2,
+                "Price": 120
+            },
+            {
+                "PizzaName": "Vesuvio",
+                "Quantity": 1,
+                "Price": 130
+            },
+            {
+                "PizzaName": "Caprisiosa",
+                "Quantity": 2,
+                "Price": 115
+            }
+        ]
+    },
+    {
+        "id": "1002",
+        "OrderNo": "2",
+        "OrderId": "1002",
         "OrderStatus": "Mottagen",
+        "CustomerName": "Kim Bardach",
+        "OrderTime": "18:40",
+        "Pizzas": [
+            {
+                "PizzaName": "Margherita",
+                "Quantity": 2,
+                "Price": 120
+            },
+            {
+                "PizzaName": "Vesuvio",
+                "Quantity": 1,
+                "Price": 130
+            },
+            {
+                "PizzaName": "Caprisiosa",
+                "Quantity": 2,
+                "Price": 115
+            }
+        ]
+    },
+    {
+        "id": "1003",
+        "OrderNo": "3",
+        "OrderId": "1003",
+        "OrderStatus": "Leverand",
         "CustomerName": "Thomas Hallström",
         "OrderTime": "18:30",
         "Pizzas": [
@@ -23,8 +75,10 @@
         ]
     },
     {
-        "OrderNo": "5",
-        "OrderStatus": "Tillagning",
+        "id": "1004",
+        "OrderNo": "4",
+        "OrderId": "1004",
+        "OrderStatus": "Mottagen",
         "CustomerName": "Claes Hallström",
         "OrderTime": "18:40",
         "Pizzas": [
