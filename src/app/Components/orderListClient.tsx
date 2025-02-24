@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useUIState } from "@/context/UIStateProvider";
 import { Order } from "../Types/order";
@@ -9,19 +9,25 @@ export default function OrderListClient({ orders }: { orders: Order[] }) {
     const { selectedFilter } = useUIState();
     const [filteredOrders, setFilteredOrders] = useState<Order[]>(orders);
 
-    useEffect(()=> {
+
+
+    useEffect(() => {
         if (selectedFilter === "Dashboard") {
-            setFilteredOrders(orders)
+            setFilteredOrders(orders);
         } else {
             const filterTrim = selectedFilter.split(">")?.pop()?.trim();
-            setFilteredOrders(orders.filter(order => order.OrderStatus === filterTrim));
+            setFilteredOrders(
+                orders.filter((order) => order.OrderStatus === filterTrim)
+            );
         }
     }, [selectedFilter, orders]);
 
     return (
         <div className="p-4 grid gap-2">
             {filteredOrders.length > 0 ? (
-                filteredOrders.map((order) => <OrderCard key={order.OrderNo} order={order} />)
+                filteredOrders.map((order) => (
+                    <OrderCard key={order.OrderNo} order={order} />
+                ))
             ) : (
                 <p className="text-gray-500">Inga ordrar i denna kategori</p>
             )}

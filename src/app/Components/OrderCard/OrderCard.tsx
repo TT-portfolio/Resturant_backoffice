@@ -2,12 +2,23 @@
 
 import { useState } from "react";
 import { Order } from "@/app/Types/order";
+import { updateOrderStatus } from "@/services/orderService";
 
-export default function OrderCard({ order }: { order: Order }) {
+export default function OrderCard({ order }: {order: Order}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [status, setStatus] = useState<Order["OrderStatus"]>(
         order.OrderStatus
     );
+
+    const handleClick = async (newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
+    ) => {
+        try {
+            await updateOrderStatus(order.OrderId, newStatus)
+            setStatus(newStatus);
+        } catch {
+            console.log("Something went wrong");
+        } 
+    };
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -32,6 +43,8 @@ export default function OrderCard({ order }: { order: Order }) {
             ) || 0
         );
     };
+
+    
 
     return (
         <div className="border p-4 rounded-md bg-white shadow-md">
@@ -85,28 +98,30 @@ export default function OrderCard({ order }: { order: Order }) {
                     )}
                     {/* Total Pris */}
                     <div>
-                        <strong><h4>Total pris: {calculateTotalPrice()} :-</h4></strong>
+                        <strong>
+                            <h4>Total pris: {calculateTotalPrice()} :-</h4>
+                        </strong>
                     </div>
 
                     {/* Knappar för att simulera statusändring */}
                     <div className="mt-2 space-x-2">
                         <button
-                            onClick={() => setStatus("Mottagen")}
+                            onClick={() => handleClick("Mottagen")}
                             className="px-2 py-1 bg-yellow-500 text-white rounded">
                             Mottagen
                         </button>
                         <button
-                            onClick={() => setStatus("Tillagning")}
+                            onClick={() => handleClick("Tillagning")}
                             className="px-2 py-1 bg-green-500 text-white rounded">
                             Tillagning
                         </button>
                         <button
-                            onClick={() => setStatus("Leverans")}
+                            onClick={() => handleClick("Leverans")}
                             className="px-2 py-1 bg-Order-blue text-white rounded">
                             Leverans
                         </button>
                         <button
-                            onClick={() => setStatus("Avslutad")}
+                            onClick={() => handleClick("Avslutad")}
                             className="px-2 py-1 bg-gray-500 text-white rounded">
                             Avslutad
                         </button>
