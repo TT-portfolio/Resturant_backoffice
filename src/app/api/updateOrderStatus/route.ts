@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try{
-        console.log("Api route triggered")
+        //console.log("Api route triggered")
         const {orderId, newStatus} = await req.json();
-        console.log("Recived:", {orderId, newStatus})
+        //console.log("Recived:", {orderId, newStatus})
         
 
         if(!orderId || ! newStatus) {
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
         const azureFunctionUrl = process.env.AZURE_UPDATE_URL;
         const azureFunctionCode = process.env.AZURE_FUNCTION_CODE;
 
-        console.log("AZURE_UPDATE_URL:", azureFunctionUrl);
-        console.log("AZURE_FUNCTION_CODE:", azureFunctionCode ? "Loaded" : "Missing");
+        //console.log("AZURE_UPDATE_URL:", azureFunctionUrl);
+        //console.log("AZURE_FUNCTION_CODE:", azureFunctionCode ? "Loaded" : "Missing");
 
         if(!azureFunctionUrl || !azureFunctionCode) {
             console.error("Missing environment variables!");
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         });
 
         const data = await response.json();
-        console.log("Azure response:", data);
+        //console.log("Azure response:", data);
 
         if (!response.ok){
             console.error("Azure function error:", data);
