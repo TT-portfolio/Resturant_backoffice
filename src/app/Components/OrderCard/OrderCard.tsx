@@ -13,7 +13,7 @@ export default function OrderCard({ order }: {order: Order}) {
     const handleClick = async (newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
     ) => {
         try {
-            console.log(newStatus);
+            console.log(`Updating order ${order.OrderId} to status: ${newStatus}`);
             await updateOrderStatus(order.OrderId, newStatus)
             setStatus(newStatus);
         } catch {

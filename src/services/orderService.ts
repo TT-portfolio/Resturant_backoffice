@@ -1,5 +1,5 @@
 export const updateOrderStatus = async (
-    orderNo: string,
+    orderId: string,
     newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
 ) => {
     try {
@@ -8,13 +8,10 @@ export const updateOrderStatus = async (
             headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify({ orderNo, newStatus }),
+            body: JSON.stringify({ orderId, newStatus }),
         });
 
-        const data = await response.json();
-
         if (!response.ok) {
-            console.log("API error: ", data);
             throw new Error("Unable to update order");
         }
 

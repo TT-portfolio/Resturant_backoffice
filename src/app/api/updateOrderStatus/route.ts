@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
     try{
         console.log("Api route triggered")
-        const {orderNo, newStatus} = await req.json();
-        console.log("Recived:", {orderNo, newStatus})
+        const {orderId, newStatus} = await req.json();
+        console.log("Recived:", {orderId, newStatus})
         
 
-        if(!orderNo || ! newStatus) {
+        if(!orderId || ! newStatus) {
             return NextResponse.json({error: "Missing orderNo or newStatus"}, {status: 400});
         }
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         }
 
         const azureRequestBody = {
-            OrderId: orderNo,
+            OrderId: orderId,
             OrderStatus: newStatus
         };
 
