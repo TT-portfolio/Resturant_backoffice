@@ -1,21 +1,24 @@
-import "ts-node/register";  
-import nextJest from "next/jest";
-import type { Config } from "jest";
-
+import nextJest from "next/jest"; 
 const createJestConfig = nextJest({
   dir: "./",
 });
 
-const config: Config = {
+const config = {
   clearMocks: true,
-  collectCoverage: true, 
+  globals: {
+    fetch: global.fetch,
+    Request: global.Request,
+    Response: global.Response,
+  },
+  collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "jsdom",
   moduleNameMapper: {
-   "^@/(.*)$": "<rootDir>/src/$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  
 };
 
 export default createJestConfig(config);
