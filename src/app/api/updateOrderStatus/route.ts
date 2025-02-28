@@ -12,12 +12,12 @@ export async function POST(req: NextRequest) {
         }
 
         const azureFunctionUrl = process.env.AZURE_UPDATE_URL;
-        const azureFunctionCode = process.env.AZURE_FUNCTION_CODE;
+        //const azureFunctionCode = process.env.AZURE_FUNCTION_CODE;
 
         //console.log("AZURE_UPDATE_URL:", azureFunctionUrl);
         //console.log("AZURE_FUNCTION_CODE:", azureFunctionCode ? "Loaded" : "Missing");
 
-        if(!azureFunctionUrl || !azureFunctionCode) {
+        if(!azureFunctionUrl) {
             console.error("Missing environment variables!");
             return NextResponse.json({error: "Server misconfigured"}, {status: 500});
         }
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
             OrderStatus: newStatus
         };
 
-        const response = await fetch (`${azureFunctionUrl}?code=${azureFunctionCode}`, {
+        const response = await fetch (`${azureFunctionUrl}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
