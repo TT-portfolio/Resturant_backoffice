@@ -3,6 +3,6 @@ import { Order } from "../Types/order";
 import OrderListClient from "./orderListClient";
 
 export default async function OrderList() {
-    const orders: Order[] = await getOrders();
-    return <OrderListClient orders={orders} />;
+    const initialOrders: Order[] = await getOrders();
+    return <OrderListClient initialOrders={initialOrders} />;
 }
