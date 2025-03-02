@@ -1,5 +1,7 @@
+export type OrderStatus = "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test";
+
 export interface Order {
-    OrderStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test";
+    OrderStatus: OrderStatus
     CustomerName: string;
     OrderNo: string;
     OrderId: string;

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Order } from "@/app/Types/order";
+import { Order, OrderStatus } from "@/app/Types/order";
 import { updateOrderStatus } from "@/services/orderService";
 
-export default function OrderCard({ order }: {order: Order}) {
+export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUpdateStatus: (orderId:string, newStatus: OrderStatus) => void}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [status, setStatus] = useState<Order["OrderStatus"]>(
         order.OrderStatus
@@ -15,6 +15,7 @@ export default function OrderCard({ order }: {order: Order}) {
         try {
             await updateOrderStatus(order.OrderId, newStatus)
             setStatus(newStatus);
+            onUpdateStatus(order.OrderId, newStatus);
         } catch {
             console.log("Something went wrong");
         } 

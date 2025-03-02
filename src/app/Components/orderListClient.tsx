@@ -1,7 +1,7 @@
 "use client";
 
 import { useUIState } from "@/context/UIStateProvider";
-import { Order } from "../Types/order";
+import { Order, OrderStatus } from "../Types/order";
 import OrderCard from "./OrderCard/OrderCard";
 import { useState, useEffect } from "react";
 import { getOrders } from "@/context/orders"; // Se till att hämta funktionen här
@@ -27,6 +27,14 @@ export default function OrderListClient({ initialOrders }: { initialOrders: Orde
         fetchOrders();
     }, [selectedFilter]); // Hämta nya ordrar varje gång filtret ändras
 
+    const updateOrderStatusLocally = (orderId: string, newStatus: OrderStatus) => {
+        setOrders((prevOrders) =>
+            prevOrders.map((order) =>
+                order.OrderId === orderId ? { ...order, OrderStatus: newStatus } : order
+            )
+        );
+    };
+
     // Filtrera ordrarna baserat på det valda filtret
     const filteredOrders =
         selectedFilter === "Dashboard"
@@ -38,7 +46,7 @@ export default function OrderListClient({ initialOrders }: { initialOrders: Orde
             {loading ? (
                 <p className="text-gray-500">Laddar ordrar...</p>
             ) : filteredOrders.length > 0 ? (
-                filteredOrders.map((order) => <OrderCard key={order.OrderNo} order={order} />)
+                filteredOrders.map((order) => <OrderCard key={order.OrderNo} order={order} onUpdateStatus={updateOrderStatusLocally} />)
             ) : (
                 <p className="text-gray-500">Inga ordrar i denna kategori</p>
             )}
