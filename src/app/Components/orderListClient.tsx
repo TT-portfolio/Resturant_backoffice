@@ -37,7 +37,7 @@ export default function OrderListClient({
         const connectToSignalR = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:7283/api/SignalRNegotiate",
+                    "https://pizzafunctions.azurewebsites.net/api/SignalRNegotiate",
                     { method: "POST" }
                 );
 
@@ -50,7 +50,9 @@ export default function OrderListClient({
                 console.log("🔹 Negotiate Response Data:", data);
 
                 const connection = new SignalR.HubConnectionBuilder()
-                    .withUrl(data.url)
+                    .withUrl(data.url, {
+                        accessTokenFactory: () => data.accessToken
+                    })
                     .withAutomaticReconnect()
                     .build();
 
@@ -59,9 +61,10 @@ export default function OrderListClient({
 
                 connection.on("orderUpdated", (updatedOrder: Order) => {
                     console.log("🔄 Order Updated:", updatedOrder);
+                    refreshOrders();
                     setOrders((prevOrders) =>
                         prevOrders.map((order) =>
-                            order.OrderId === updatedOrder.OrderId
+                            order.orderId === updatedOrder.orderId
                                 ? updatedOrder
                                 : order
                         )
@@ -75,6 +78,7 @@ export default function OrderListClient({
         };
 
         connectToSignalR();
+        
     }, []);
 
     const updateOrderStatusLocally = (
@@ -83,8 +87,8 @@ export default function OrderListClient({
     ) => {
         setOrders((prevOrders) =>
             prevOrders.map((order) =>
-                order.OrderId === orderId
-                    ? { ...order, OrderStatus: newStatus }
+                order.orderId === orderId
+                    ? { ...order, orderStatus: newStatus }
                     : order
             )
         );
@@ -95,10 +99,23 @@ export default function OrderListClient({
         selectedFilter === "Dashboard"
             ? orders
             : orders.filter(
-                  (order) =>
-                      order.OrderStatus ===
-                      selectedFilter.split(">")?.pop()?.trim()
-              );
+                (order) =>
+                    order.orderStatus ===
+                    selectedFilter.split(">")?.pop()?.trim()
+            );
+    
+            const refreshOrders = async () => {
+                setLoading(true);
+                try {
+                    const updatedOrder = await getOrders()
+                    setOrders(updatedOrder);
+                } catch (error){
+                    console.error(error);
+                
+                } finally {
+                    setLoading(false);
+                }
+            }
 
     return (
         <div className="p-4 grid gap-2">
@@ -107,7 +124,7 @@ export default function OrderListClient({
             ) : filteredOrders.length > 0 ? (
                 filteredOrders.map((order) => (
                     <OrderCard
-                        key={order.OrderNo}
+                        key={order.orderNo}
                         order={order}
                         onUpdateStatus={updateOrderStatusLocally}
                     />

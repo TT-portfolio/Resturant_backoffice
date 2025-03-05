@@ -6,16 +6,16 @@ import { updateOrderStatus } from "@/services/orderService";
 
 export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUpdateStatus: (orderId:string, newStatus: OrderStatus) => void}) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [status, setStatus] = useState<Order["OrderStatus"]>(
-        order.OrderStatus
+    const [status, setStatus] = useState<OrderStatus>(
+        order.orderStatus
     );
 
     const handleClick = async (newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
     ) => {
         try {
-            await updateOrderStatus(order.OrderId, newStatus)
+            await updateOrderStatus(order.orderId, newStatus)
             setStatus(newStatus);
-            onUpdateStatus(order.OrderId, newStatus);
+            onUpdateStatus(order.orderId, newStatus);
         } catch {
             console.log("Something went wrong");
         } 
@@ -38,8 +38,8 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
 
     const calculateTotalPrice = () => {
         return (
-            order.Pizzas?.reduce(
-                (total, pizza) => total + pizza.Price * pizza.Quantity,
+            order.pizzas?.reduce(
+                (total, pizza) => total + pizza.price * pizza.quantity,
                 0
             ) || 0
         );
@@ -51,9 +51,9 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
         <div className="border p-4 rounded-md bg-white shadow-md">
             <div className="grid grid-cols-4">
                 <h3 className="text-lg font-bold">
-                    Order number # {order.OrderNo}
+                    Order number # {order.orderNo}
                 </h3>
-                <h4 className="text-lg font-bold">{order.CustomerName}</h4>
+                <h4 className="text-lg font-bold">{order.customerName}</h4>
                 <p
                     className={`px-2 py-1 max-w-24 text-center text-white rounded ${getStatusColor(
                         status
@@ -73,24 +73,24 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
                         </p>
                         <p>
                             Order tidpunkt:
-                            <strong>{order.OrderTime}</strong>
+                            <strong>{order.orderTime}</strong>
                         </p>
                     </div>
                     {/* Visa beställda pizzor */}
-                    {order.Pizzas && order.Pizzas.length > 0 && (
+                    {order.pizzas && order.pizzas.length > 0 && (
                         <div>
                             <ul>
-                                {order.Pizzas.map((pizza, index) => (
+                                {order.pizzas.map((pizza, index) => (
                                     <li
                                         key={index}
                                         className="grid grid-cols-3">
                                         <span>
-                                            <strong>{pizza.PizzaName}</strong>{" "}
+                                            <strong>{pizza.pizzaName}</strong>{" "}
                                         </span>
-                                        <span>{pizza.Quantity} st</span>
+                                        <span>{pizza.quantity} st</span>
                                         <span>
                                             {" "}
-                                            {pizza.Price * pizza.Quantity} kr
+                                            {pizza.price * pizza.quantity} kr
                                         </span>
                                     </li>
                                 ))}
