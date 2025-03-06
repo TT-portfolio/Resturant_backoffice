@@ -1,7 +1,9 @@
+import { fetchFromAPI } from "@/lib/api";
+
 export async function getOrders() {
     try {
-        const response = await fetch("https://pizzafunctions.azurewebsites.net/api/GetOrders");
-        
+        //const response = await fetch("https://pizzafunctions.azurewebsites.net/api/GetOrders");
+        const response = await fetchFromAPI("GetOrders");
         if (!response.ok) {
             throw new Error(`API error: ${response.status} ${response.statusText}`);
         }

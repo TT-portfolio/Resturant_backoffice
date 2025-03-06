@@ -1,7 +1,10 @@
+import { fetchFromAPI } from "@/lib/api";
+
 export const updateOrderStatus = async (
     orderId: string,
-    newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
+    newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" 
 ) => {
+    //return fetchFromAPI("updateOrderStatus", "POST", {orderId, newStatus});
     try {
         const response = await fetch("/api/updateOrderStatus", {
             method: "POST",
