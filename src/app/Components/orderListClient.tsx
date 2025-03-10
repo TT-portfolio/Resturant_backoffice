@@ -5,7 +5,7 @@ import { Order, OrderStatus } from "../Types/order";
 import OrderCard from "./OrderCard/OrderCard";
 import { useState, useEffect } from "react";
 import * as SignalR from "@microsoft/signalr";
-import { getOrders } from "@/context/orders"; // Se till att hämta funktionen här
+import { getOrders } from "@/lib/orders"; // Se till att hämta funktionen här
 
 export default function OrderListClient({
     initialOrders,
@@ -51,7 +51,7 @@ export default function OrderListClient({
 
                 const connection = new SignalR.HubConnectionBuilder()
                     .withUrl(data.url, {
-                        accessTokenFactory: () => data.accessToken
+                        accessTokenFactory: () => data.accessToken,
                     })
                     .withAutomaticReconnect()
                     .build();
@@ -78,7 +78,6 @@ export default function OrderListClient({
         };
 
         connectToSignalR();
-        
     }, []);
 
     const updateOrderStatusLocally = (
@@ -99,23 +98,22 @@ export default function OrderListClient({
         selectedFilter === "Dashboard"
             ? orders
             : orders.filter(
-                (order) =>
-                    order.orderStatus ===
-                    selectedFilter.split(">")?.pop()?.trim()
-            );
-    
-            const refreshOrders = async () => {
-                setLoading(true);
-                try {
-                    const updatedOrder = await getOrders()
-                    setOrders(updatedOrder);
-                } catch (error){
-                    console.error(error);
-                
-                } finally {
-                    setLoading(false);
-                }
-            }
+                  (order) =>
+                      order.orderStatus ===
+                      selectedFilter.split(">")?.pop()?.trim()
+              );
+
+    const refreshOrders = async () => {
+        setLoading(true);
+        try {
+            const updatedOrder = await getOrders();
+            setOrders(updatedOrder);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="p-4 grid gap-2">

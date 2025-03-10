@@ -15,11 +15,15 @@ export const fetchFromAPI = async (
     const baseURL =getBaseURL(useLocal);
     const url = `${baseURL}/${endpoint}`;
 
+    const apiCode = !useLocal ? process.env.NEXT_PUBLIC_API_CODE : null;
+
     const options: RequestInit = {
         method, 
         headers: {
             "Content-Type": "application/json",
+            ...(apiCode && {"x-functions-key": apiCode}),
         },
+        ...(data && {body: JSON.stringify(data)}),
     };
 
     if(data) {

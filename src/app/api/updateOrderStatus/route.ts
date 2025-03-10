@@ -1,3 +1,4 @@
+import { fetchFromAPI } from "@/lib/api";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -26,7 +27,8 @@ export async function POST(req: NextRequest) {
             OrderId: orderId,
             OrderStatus: newStatus
         };
-
+        // const data = await fetchFromAPI("", "POST", azureRequestBody);
+        // console.log(data);
         const response = await fetch (`${azureFunctionUrl}`, {
             method: "POST",
             headers: {
