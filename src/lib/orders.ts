@@ -1,7 +1,7 @@
 import { fetchFromAPI } from "@/lib/api";
 
 export const getOrders = async () => {
-    return fetchFromAPI("GetOrders", "GET");
+    return fetchFromAPI("GetOrders");
 };
 
 // exempel för att köra mot lokala 
