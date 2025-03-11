@@ -13,7 +13,12 @@ export const fetchFromAPI = async (
     useLocal= false
 ) => {
     const baseURL =getBaseURL(useLocal);
+    console.log("Base URL:", baseURL);
+    console.log("Endpoint:", endpoint);
+    
     const url = `${baseURL}/${endpoint}`;
+    console.log("Full URL:", url);
+
 
     const apiCode = !useLocal ? process.env.NEXT_PUBLIC_API_CODE : null;
 
