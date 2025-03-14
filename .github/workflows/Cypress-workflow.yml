@@ -19,6 +19,9 @@ jobs:
       - name: Start local server
         run: npm run dev &
 
+      - name: Install wait-on
+        run: npm install -g wait-on
+      
       - name: Wait for server to be ready
         run: npx wait-on http://localhost:3000
 
