@@ -17,10 +17,16 @@ jobs:
         run: npm ci  # Använd npm ci för snabbare installation
 
       - name: Start local server
-        run: npm run dev &
+        run: nohup npm run dev > nextjs.log 2>&1 &
+
+      - name: Debug next.js Logs
+        run: cat nextjs.log 
 
       - name: Install wait-on
         run: npm install -g wait-on
+      
+      - name: Wait before checking server
+        run: sleep 10
       
       - name: Wait for server to be ready
         run: npx wait-on http://localhost:3000
