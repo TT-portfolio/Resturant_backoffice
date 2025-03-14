@@ -1,4 +1,4 @@
-import { getOrders } from "@/context/orders";
+import { getOrders } from "@/lib/orders";
 import { Order } from "../Types/order";
 import OrderListClient from "./orderListClient";
 
