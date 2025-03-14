@@ -9,6 +9,5 @@ export const getOrders = async () => {
 // return fetchFromAPI("updateOrderStatus", "POST", { OrderId, OrderStatus }, true);
 
 export const updateOrderStatus = async (OrderId: string, OrderStatus: string) => {
-    console.log("updateOrderStatus testar")
     return fetchFromAPI("updateOrderStatus", "POST", { OrderId, OrderStatus });
 };

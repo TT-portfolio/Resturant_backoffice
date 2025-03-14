@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
         }
 
         const azureFunctionUrl = process.env.AZURE_UPDATE_URL;
+        console.log("from Route:", azureFunctionUrl)
         //const azureFunctionCode = process.env.AZURE_FUNCTION_CODE;
 
         //console.log("AZURE_UPDATE_URL:", azureFunctionUrl);
