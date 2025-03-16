@@ -6,3 +6,5 @@ export default async function OrderList() {
     const initialOrders: Order[] = await getOrders();
     return <OrderListClient initialOrders={initialOrders} />;
 }
+
+// Detta är en sak som skall raderas, bara kommentaren
