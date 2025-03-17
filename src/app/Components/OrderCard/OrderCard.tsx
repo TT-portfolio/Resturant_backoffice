@@ -49,11 +49,12 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
 
     return (
         <div className="border p-4 rounded-md bg-white shadow-md">
-            <div className="grid grid-cols-4">
+            <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-center">
                 <h3 className="text-lg font-bold">
-                    Order number # {order.orderNo}
+                    Order No # {order.orderNo}
                 </h3>
-                <h4 className="text-lg font-bold">{order.customerName}</h4>
+                <h4 className="text-lg font-bold">{order.customerFirstName} {order.customerLastName}</h4>
+                <p className="text-lg font-bold">{order.orderTime}</p>
                 <p
                     className={`px-2 py-1 max-w-24 text-center text-white rounded ${getStatusColor(
                         status
@@ -73,7 +74,7 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
                         </p>
                         <p>
                             Order tidpunkt:
-                            <strong>{order.orderTime}</strong>
+                            <strong> {order.orderTime}</strong>
                         </p>
                     </div>
                     {/* Visa beställda pizzor */}
