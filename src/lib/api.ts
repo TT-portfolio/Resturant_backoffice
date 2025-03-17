@@ -6,7 +6,6 @@ import { error } from "console";
 //         : process.env.NEXT_PUBLIC_API_PROD;
 // };
 const getBaseURL = () => {
-    console.log("baseKoden är här")
     return "https://pizzafunctions.azurewebsites.net/api"; // 🔥 Hårdkodad API-URL
 };
 
@@ -17,12 +16,10 @@ export const fetchFromAPI = async (
     useLocal= false
 ) => {
     const baseURL =getBaseURL();
-    console.log("Base URL:", baseURL);
-    console.log("Endpoint:", endpoint);
-    
     const url = `${baseURL}/${endpoint}`;
-    console.log("Full URL:", url);
-
+    // console.log("Base URL:", baseURL);
+    // console.log("Endpoint:", endpoint);
+    //console.log("Full URL:", url);
 
     const apiCode = !useLocal ? process.env.NEXT_PUBLIC_API_CODE : null;
 
