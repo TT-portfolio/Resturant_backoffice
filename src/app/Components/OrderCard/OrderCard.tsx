@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Order, OrderStatus } from "@/app/Types/order";
-import { updateOrderStatus } from "@/services/orderService";
+import { updateOrderStatus } from "@/lib/orders";
 
 export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUpdateStatus: (orderId:string, newStatus: OrderStatus) => void}) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -10,10 +10,10 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
         order.orderStatus
     );
 
-    const handleClick = async (newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | "Test"
+    const handleClick = async (newStatus: "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" 
     ) => {
         try {
-            await updateOrderStatus(order.orderId, newStatus)
+            updateOrderStatus(order.orderId, newStatus)
             setStatus(newStatus);
             onUpdateStatus(order.orderId, newStatus);
         } catch {
