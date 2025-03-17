@@ -2,8 +2,9 @@ export type OrderStatus = "Mottagen" | "Tillagning" | "Leverans" | "Avslutad" | 
 
 export interface Order {
     orderStatus: OrderStatus
-    customerName: string;
-    orderNo: string;
+    customerFirstName: string;
+    customerLastName: string;
+    orderNo: number;
     orderId: string;
     orderTime: string
     pizzas: Pizzas[];
