@@ -20,7 +20,6 @@ describe("OrderCard Test", () => {
             cy.visit("http://localhost:3000?test=true&variant=single");
         });
         describe("Present general info about the order", () => {
-            
             it("Show when a order is awailable", () => {
                 cy.contains("Testperson Testsson")
                 cy.contains("Order No # 0")
@@ -30,7 +29,7 @@ describe("OrderCard Test", () => {
         });
 
         describe("Open upp the ordercard", () => {
-            it.only("Opens up using expand button", () => {
+            it("Opens up using expand button", () => {
                 cy.getByData("expand-button").click()
                 cy.getByData("pizza-name").contains("Margarita")
                 cy.getByData("pizza-quantity").contains("1 st")                

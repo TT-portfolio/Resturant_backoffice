@@ -128,7 +128,9 @@ export default function OrderListClient({
                     />
                 ))
             ) : (
-                <p className="text-gray-500">Inga ordrar i denna kategori</p>
+                <p
+                    data-test="NoOrders"
+                className="text-gray-500">Inga ordrar i denna kategori</p>
             )}
         </div>
     );

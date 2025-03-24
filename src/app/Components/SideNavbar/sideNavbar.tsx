@@ -23,6 +23,7 @@ const SideNavbar = () => {
             {/* Dashboard */}
             <div>
                 <button
+                    data-test="dashbar-button"
                     className="text-left font-semibold hover:bg-gray-600"
                     onClick={() => toggleMenu("dashboard")}>
                     Dashboard
