@@ -48,20 +48,20 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
     
 
     return (
-        <div className="border p-4 rounded-md bg-white shadow-md">
+        <div className="border p-4 rounded-md bg-white shadow-md" data-cy='order-card'>
             <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-center">
                 <h3 className="text-lg font-bold">
                     Order No # {order.orderNo}
                 </h3>
                 <h4 className="text-lg font-bold">{order.customerFirstName} {order.customerLastName}</h4>
                 <p className="text-lg font-bold">{order.orderTime}</p>
-                <p
+                <p data-test="status-button-top"
                     className={`px-2 py-1 max-w-24 text-center text-white rounded ${getStatusColor(
                         status
                     )}`}>
                     {status}
                 </p>
-                <button onClick={() => setIsExpanded(!isExpanded)}>
+                <button data-test="expand-button" onClick={() => setIsExpanded(!isExpanded)}>
                     {isExpanded ? "▼" : "▶"}
                 </button>
             </div>
@@ -85,11 +85,11 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
                                     <li
                                         key={index}
                                         className="grid grid-cols-3">
-                                        <span>
+                                        <span data-test="pizza-name">
                                             <strong>{pizza.pizzaName}</strong>{" "}
                                         </span>
-                                        <span>{pizza.quantity} st</span>
-                                        <span>
+                                        <span data-test="pizza-quantity">{pizza.quantity} st</span>
+                                        <span data-test="pizza-price">
                                             {" "}
                                             {pizza.price * pizza.quantity} kr
                                         </span>
@@ -106,7 +106,7 @@ export default function OrderCard({ order, onUpdateStatus }: {order: Order, onUp
                     </div>
 
                     {/* Knappar för att simulera statusändring */}
-                    <div className="mt-2 space-x-2">
+                    <div className="mt-2 space-x-2" data-test="status-button-low">
                         <button
                             onClick={() => handleClick("Mottagen")}
                             className="px-2 py-1 bg-yellow-500 text-white rounded">

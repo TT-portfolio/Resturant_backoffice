@@ -7,16 +7,19 @@ import { error } from "console";
 // };
 const getBaseURL = () => {
     return "https://pizzafunctions.azurewebsites.net/api"; // 🔥 Hårdkodad API-URL
+    //return "http://localhost:7283/api"; // 🔥 Hårdkodad API-URL
 };
 
 export const fetchFromAPI = async ( 
     endpoint: string, 
     method: "GET"|"POST"|"PUT"|"DELETE" = "GET",
     data : any = null,
-    useLocal= false
+    useLocal= false,
+    queryParams: Record<string, string> = {}
 ) => {
     const baseURL =getBaseURL();
-    const url = `${baseURL}/${endpoint}`;
+    const queryString = new URLSearchParams(queryParams).toString();
+    const url = `${baseURL}/${endpoint}${queryString ? `?${queryString}` : ''}`;
     // console.log("Base URL:", baseURL);
     // console.log("Endpoint:", endpoint);
     //console.log("Full URL:", url);
