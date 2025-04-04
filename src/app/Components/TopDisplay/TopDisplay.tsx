@@ -1,12 +1,13 @@
-import React from "react";
-import { useUIState } from "@/context/UIStateProvider";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import Link from "next/link";
 
-const TopDisplay = () => {
-    const { selectedFilter } = useUIState();
+const TopDisplay = async () => {
+    const Session = await getServerSession(options);
     return (
         <div className="bg-slate-500 p-4 text-white text-xl font-semibold flex justify-between">
-            <div data-test="TopNavigation">{selectedFilter}</div>
-            <h1>PizzaLover</h1>
+            <h1 data-test="TopDisplayName">PizzaLover</h1>
+            {Session ? <Link href="/api/auth/signout?callbackUrl=/" data-test="Signout">Sign Out</Link>:<Link href="/api/auth/signin" data-test="Signin">Sign In</Link>}
         </div>
     );
 };

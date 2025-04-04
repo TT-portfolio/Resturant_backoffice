@@ -2,101 +2,79 @@
 
 import React, { useState } from "react";
 import { useUIState } from "@/context/UIStateProvider";
-
+import Link from "next/link";
 
 const SideNavbar = () => {
-    const {setSelectedFilter} = useUIState();
+    const { setSelectedFilter } = useUIState();
 
     const [openMenu, setOpenMenu] = useState<string | null>(null);
 
     const toggleMenu = (menu: string) => {
-        setOpenMenu(openMenu === menu ? null : menu)
-        setSelectedFilter("Dashboard")
-    }
+        setOpenMenu(openMenu === menu ? null : menu);
+        setSelectedFilter("Dashboard");
+    };
 
     const handleFilterChange = (category: string, filter: string) => {
-        setSelectedFilter(`${category} > ${filter}`)
-    }
+        setSelectedFilter(`${category} > ${filter}`);
+    };
 
     return (
         <div className="bg-slate-400 p-4 flex flex-col h-screen text-white font-semibold text-xl">
             {/* Dashboard */}
             <div>
-                <button
-                    data-test="dashbar-button"
-                    className="text-left font-semibold hover:bg-gray-600"
-                    onClick={() => toggleMenu("dashboard")}>
+                <Link data-test="dashbar-button" href="/Dashboard" onClick={() => toggleMenu("dashboard")}>
                     Dashboard
-                </button>
+                </Link>
                 {openMenu === "dashboard" && (
                     <ul className="ml-4 mr-4">
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-yellow-500 hover:text-black"
-                            onClick={() => handleFilterChange("Dashboard", "Mottagen")}>
+                            onClick={() =>
+                                handleFilterChange("Dashboard", "Mottagen")
+                            }>
                             Mottagen
                         </li>
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-Order-green hover:text-black"
-                            onClick={() => handleFilterChange("Dashboard", "Tillagning")}>
+                            onClick={() =>
+                                handleFilterChange("Dashboard", "Tillagning")
+                            }>
                             Tillagning
                         </li>
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-Order-blue hover:text-black whitespace-nowrap"
-                            onClick={() => handleFilterChange("Dashboard", "Leverans")}>
+                            onClick={() =>
+                                handleFilterChange("Dashboard", "Leverans")
+                            }>
                             Leverans
                         </li>
                         <li
                             className="p-2 cursor-pointer rounded-md hover:bg-gray-600 whitespace-nowrap"
-                            onClick={() => handleFilterChange("Dashboard", "Avslutad")}>
+                            onClick={() =>
+                                handleFilterChange("Dashboard", "Avslutad")
+                            }>
                             Avslutad
                         </li>
                     </ul>
                 )}
             </div>
             {/* Statistic */}
-            {/* <div>
-                <button
-                    className="w-full text-left p-2 font-semibold hover:bg-gray-600"
-                    onClick={() => toggleMenu("statistic")}>
-                    Statistic
-                </button>
+            <div>
+                <Link data-test="statestic-button" href="/Statestic" onClick={() => toggleMenu("statistic")}>
+                    Statistik
+                </Link>
                 {openMenu === "statistic" && (
                     <ul className="ml-4">
-                        <li
-                            className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => handleFilterChange("Statestic","Sales Report")}>
-                            Sales Report
-                        </li>
-                        <li
-                            className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => handleFilterChange("Statestic","Customer Insights")}>
-                            Customer Insights
-                        </li>
+                        <Link
+                            href="/Statestic/SalesReport"
+                            onClick={() =>
+                                handleFilterChange("Statestic", "Sales Report")
+                            }>
+                            Sales
+                        </Link>
                     </ul>
                 )}
-            </div> */}
-            {/* Orders */}
-            {/* <div>
-                <button
-                    className="w-full text-left p-2 font-semibold hover:bg-gray-600"
-                    onClick={() => toggleMenu("orders")}>
-                    Orders
-                </button>
-                {openMenu === "orders" && (
-                    <ul className="ml-4">
-                        <li
-                            className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => handleFilterChange("Orders","New Orders")}>
-                            New Orders
-                        </li>
-                        <li
-                            className="p-2 cursor-pointer hover:bg-gray-500"
-                            onClick={() => handleFilterChange("Orders","Delivered Orders")}>
-                            Delivered Orders
-                        </li>
-                    </ul>
-                )}
-            </div> */}
+            </div>
         </div>
     );
 };
