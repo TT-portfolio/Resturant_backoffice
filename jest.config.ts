@@ -14,6 +14,9 @@ const config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "jsdom",
+  transformIgnorePatterns: [
+    '/node_modules/(?!openid-client|jose)' // 👈 låt dessa transformeras
+  ],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
