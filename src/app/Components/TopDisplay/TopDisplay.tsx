@@ -10,8 +10,8 @@ const TopDisplay = async () => {
             <div className="flex gap-5">
                 {Session ? (
                     <div>
-                        <h1 className="text-lg">{Session?.user.name}</h1>
-                        <h1 className="text-lg">{Session?.user.role}</h1>
+                        <h1 data-test="UserName" className="text-lg">{Session?.user.name}</h1>
+                        <h1 data-test="UserRole" className="text-lg">{Session?.user.role}</h1>
                     </div>
                 ) : (
                     <div></div>
