@@ -41,13 +41,13 @@ export default function OrderListClient({
                     { method: "POST" }
                 );
 
-                console.log("🔹 Response Status:", response.status);
+                // console.log("🔹 Response Status:", response.status);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
                 const data = await response.json();
-                console.log("🔹 Negotiate Response Data:", data);
+                // console.log("🔹 Negotiate Response Data:", data);
 
                 const connection = new SignalR.HubConnectionBuilder()
                     .withUrl(data.url, {
@@ -57,10 +57,10 @@ export default function OrderListClient({
                     .build();
 
                 await connection.start();
-                console.log("✅ SignalR Connected");
+                // console.log("✅ SignalR Connected");
 
                 connection.on("orderUpdated", (updatedOrder: Order) => {
-                    console.log("🔄 Order Updated:", updatedOrder);
+                    // console.log("🔄 Order Updated:", updatedOrder);
                     refreshOrders();
                     setOrders((prevOrders) =>
                         prevOrders.map((order) =>

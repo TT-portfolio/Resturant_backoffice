@@ -1,5 +1,3 @@
-"use client"; // 🔹 Nu kan vi använda useState och context
-
 import SideNavbar from "./SideNavbar/sideNavbar";
 import TopDisplay from "./TopDisplay/TopDisplay";
 

@@ -20,12 +20,7 @@ export const fetchFromAPI = async (
     const baseURL =getBaseURL();
     const queryString = new URLSearchParams(queryParams).toString();
     const url = `${baseURL}/${endpoint}${queryString ? `?${queryString}` : ''}`;
-    // console.log("Base URL:", baseURL);
-    // console.log("Endpoint:", endpoint);
-    //console.log("Full URL:", url);
-
     const apiCode = !useLocal ? process.env.NEXT_PUBLIC_API_CODE : null;
-
     const options: RequestInit = {
         method, 
         headers: {
