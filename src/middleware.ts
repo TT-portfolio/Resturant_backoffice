@@ -20,4 +20,4 @@ export default withAuth(
     }
 );
 
-export const config = { matcher: ["/Statestic/*", "/Dashboard"] };
+export const config = { matcher: ["/Statestic/:path*", "/Dashboard"] };
