@@ -7,6 +7,7 @@ export default async function Sales() {
     const best = await bestSeller();
     const session = await getServerSession(options);
 
+    console.log(best)
     if (!session) {
         redirect("/");
     }
